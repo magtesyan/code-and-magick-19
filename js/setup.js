@@ -19,14 +19,17 @@ var concatNameAndSurname = function (arr1, arr2) {
   return getRandomValueFromArray(arr1) + ' ' + getRandomValueFromArray(arr2);
 };
 
-var wizards = new Array(4);
-for (var i = 0; i < wizards.length; i++) {
-  wizards[i] = {
-    name: concatNameAndSurname(WIZARD_NAMES, WIZARD_SURNAMES),
-    coatColor: getRandomValueFromArray(WIZARD_COAT_COLORS),
-    eyesColor: getRandomValueFromArray(WIZARD_EYE_COLORS)
-  };
-}
+var wizards = function (n) {
+  var wizardsArr = new Array(n);
+  for (var i = 0; i < n; i++) {
+    wizardsArr[i] = {
+      name: concatNameAndSurname(WIZARD_NAMES, WIZARD_SURNAMES),
+      coatColor: getRandomValueFromArray(WIZARD_COAT_COLORS),
+      eyesColor: getRandomValueFromArray(WIZARD_EYE_COLORS)
+    };
+  }
+  return wizardsArr;
+};
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -40,11 +43,11 @@ var renderWizard = function (wizard) {
 
 var addWizard = function (wizardsArr) {
   var fragment = document.createDocumentFragment();
-  for (i = 0; i < wizardsArr.length; i++) {
+  for (var i = 0; i < wizardsArr.length; i++) {
     fragment.appendChild(renderWizard(wizardsArr[i]));
   }
   similarListElement.appendChild(fragment);
 };
 
-addWizard(wizards);
+addWizard(wizards(4));
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
