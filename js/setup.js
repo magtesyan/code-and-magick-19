@@ -19,7 +19,7 @@ var concatNameAndSurname = function (arr1, arr2) {
   return getRandomValueFromArray(arr1) + ' ' + getRandomValueFromArray(arr2);
 };
 
-var wizards = function (n) {
+var generateWizards = function (n) {
   var wizardsArr = new Array(n);
   for (var i = 0; i < n; i++) {
     wizardsArr[i] = {
@@ -49,5 +49,5 @@ var addWizard = function (wizardsArr) {
   similarListElement.appendChild(fragment);
 };
 
-addWizard(wizards(4));
+addWizard(generateWizards(4));
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
