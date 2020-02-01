@@ -1,10 +1,15 @@
 'use strict';
 
-var userDialog = document.querySelector('.setup');
-var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-var similarListElement = userDialog.querySelector('.setup-similar-list');
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
 
-userDialog.classList.remove('hidden');
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+var similarListElement = setup.querySelector('.setup-similar-list');
+
+setup.classList.remove('hidden');
 
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -49,5 +54,35 @@ var addWizard = function (wizardsArr) {
   similarListElement.appendChild(fragment);
 };
 
+var onPopupEscPress = function (evt) {
+  if (evt.key === ESC_KEY) {
+    closeSetupPopup();
+  }
+};
+
+var openSetupPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closeSetupPopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openSetupPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    openSetupPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closeSetupPopup();
+});
+
 addWizard(generateWizards(4));
-userDialog.querySelector('.setup-similar').classList.remove('hidden');
+setup.querySelector('.setup-similar').classList.remove('hidden');
