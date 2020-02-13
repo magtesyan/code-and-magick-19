@@ -60,6 +60,7 @@
   };
 
   var openSetupPopup = function () {
+    window.util.setup.style = '';
     window.util.setup.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
   };
