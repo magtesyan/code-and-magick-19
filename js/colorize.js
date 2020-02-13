@@ -1,4 +1,5 @@
 'use strict';
+
 (function () {
   var changeWizardDetailsColor = function (detail, colorsArr, inputName) {
     var color = window.util.getRandomValueFromArray(colorsArr);

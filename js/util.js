@@ -1,4 +1,5 @@
 'use strict';
+
 (function () {
   var setup = document.querySelector('.setup');
   var wizardFireballWrapper = setup.querySelector('.setup-fireball-wrap');
