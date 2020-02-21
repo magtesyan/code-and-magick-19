@@ -9,7 +9,8 @@
 
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
-        onLoad(xhr.response);
+        window.util.wizards = xhr.response;
+        window.similar.updateWizards();
       } else {
         onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
       }
